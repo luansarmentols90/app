@@ -25,6 +25,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  mobx: ^2.2.0
+  dio: ^5.3.2
+  build_runner: ^2.2.0
+  mobx_codegen: ^2.3.0
+  flutter_mobx: ^2.0.6+5
+  
 
   cupertino_icons: ^1.0.2
 

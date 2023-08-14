@@ -1,10 +1,22 @@
+import 'package:app/src/modules/access/controllers/access_controller.dart';
 import 'package:app/src/modules/shared/styles/colors/app_colors.dart';
 import 'package:app/src/modules/shared/styles/images/app_images.dart';
 import 'package:app/src/modules/shared/styles/texts/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-class LoginPage extends StatelessWidget {
+
+class LoginPage extends StatefulWidget {
+
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  final AccessController accessController = AccessController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +36,15 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Fiscalização\nCREA-SC",
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.h1Bold.copyWith(color: AppColors.white),
-                  ),
+                  Observer(builder : (_) {
+                    return this.accessController.isLoading
+                    ? const CircularProgressIndicator()
+                    : Text(
+                      "Fiscalização\nCREA-SC",
+                      textAlign: TextAlign.center,
+                      style: AppTextStyles.h1Bold.copyWith(color: AppColors.white),
+                    );
+                  },                  ),
                   const SizedBox(height: 20.0),
                   TextFormField(
                     decoration: InputDecoration(
@@ -72,7 +88,7 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 20.0),
                   TextButton(
                     onPressed: () {
-                      // Lógica para realizar o login
+                      this.accessController.changeLoading();
                     },
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.blue,
