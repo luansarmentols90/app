@@ -20,6 +20,4 @@ abstract class _AccessController with Store {
   @action
   void changeLoading() => this.isLoading = !this.isLoading;
 
-
-
 }
