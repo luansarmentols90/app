@@ -1,4 +1,4 @@
-import 'package:app/src/modules/home/models/chuck-norris-response-model.dart';
+import 'package:app/src/modules/home/models/chuck-norris-response-db.dart';
 import 'package:app/src/modules/home/repository/home-repository.dart';
 
 class HomeService{
@@ -8,8 +8,8 @@ class HomeService{
   Future<String?> getAnswer() async {
 
     try{
-      ChuckNorrisResponseModel? chuckNorrisResponseModel = await homeRepository.getAnswer();
-      return "Nova curiosidade: ${chuckNorrisResponseModel!.value}";
+      Answer? answer = await homeRepository.getAnswer();
+      return "Nova curiosidade: ${answer!.text}";
     }catch(e){
       rethrow;
     }
