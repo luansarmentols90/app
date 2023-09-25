@@ -1,13 +1,11 @@
-import 'dart:convert';
 
-import 'package:app/src/config/db/db_helper.dart';
 import 'package:app/src/modules/home/models/chuck-norris-response-db.dart';
 import 'package:app/src/modules/home/models/chuck-norris-response-model.dart';
+import 'package:app/src/modules/home/repository/base/base_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-class HomeRepository{
-
-  final DBHelper dbHelper = DBHelper();
+class HomeRepository with BaseRepository{
 
   Future<Answer?> getAnswer() async {
     try{
@@ -19,8 +17,14 @@ class HomeRepository{
       await dbHelper.saveAnswer(chuckNorrisResponseModel); //todo não fazer isso, somente para demonstração
       return (await dbHelper.getAnswers()).first;
     }on DioException catch(e){
-      print(e.message);
+      debugPrint(e.message);
       return null;
     }
   }
+
+  Future<void> insertHome() async{
+    //aqui estou invocando um método do base repository
+    await insert("TABELA", "queryEtc");
+  }
+
 }
