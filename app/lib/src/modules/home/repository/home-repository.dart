@@ -12,6 +12,7 @@ class HomeRepository with BaseRepository{
       await dbHelper.initDb();
       await dbHelper.truncateTable();
       final dioClient = Dio();
+      throw Exception();
       Response response = await dioClient.get("https://api.chucknorris.io/jokes/random");
       ChuckNorrisResponseModel chuckNorrisResponseModel = ChuckNorrisResponseModel.fromJson(response.data!);
       await dbHelper.saveAnswer(chuckNorrisResponseModel); //todo não fazer isso, somente para demonstração

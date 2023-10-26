@@ -1,3 +1,4 @@
+import 'package:app/src/infrastructure/exceptions/comunication_exception.dart';
 import 'package:app/src/modules/home/models/chuck-norris-response-db.dart';
 import 'package:app/src/modules/home/repository/home-repository.dart';
 
@@ -9,9 +10,10 @@ class HomeService{
 
     try{
       Answer? answer = await homeRepository.getAnswer();
-      return "Nova curiosidade: ${answer!.text}";
+      throw Exception();
+      //return "Nova curiosidade: ${answer!.text}";
     }catch(e){
-      rethrow;
+      throw ComunicationException();
     }
 
   }
