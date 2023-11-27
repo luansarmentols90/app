@@ -5,6 +5,7 @@ class LogService{
 
     try{
       //faz a criação do log de erro no arquivo específico
+      print('error, salvou no log');
     }catch(e){
       rethrow;
     }

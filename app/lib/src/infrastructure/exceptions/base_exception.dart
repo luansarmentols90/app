@@ -6,10 +6,11 @@ class BaseException<T> implements Exception{
   final LogService _logger = LogService();
 
   final String? message;
+  final String? nameClass;
   final String? type;
   final T? exception;
 
-  BaseException([this.message, this.type, this.exception]) {
+  BaseException([this.message, this.nameClass, this.type, this.exception]) {
     
     if(type == 'error') {
       _logger.logError();
@@ -32,6 +33,7 @@ class BaseException<T> implements Exception{
 
     if(exception == ComunicationException) {
       print('Treta de Comunicação');
+      print(nameClass);
       return 'Treta de Comunicação';
     }
     

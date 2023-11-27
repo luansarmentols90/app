@@ -10,10 +10,11 @@ class HomeService{
 
     try{
       Answer? answer = await homeRepository.getAnswer();
-      throw Exception();
+      //throw Exception();
       //return "Nova curiosidade: ${answer!.text}";
-    }catch(e){
-      throw ComunicationException();
+    }on ComunicationException catch (e){
+      print(e.toStringMessage());
+      rethrow;
     }
 
   }
