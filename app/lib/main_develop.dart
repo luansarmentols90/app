@@ -5,7 +5,7 @@ Future<void> main() async {
   
   //Quando for necessário carregar alguma coisa antes do app de fato rodar, deve ser adicionado aqui.
   // -->
-  
+
   startApplication();
   
 }
