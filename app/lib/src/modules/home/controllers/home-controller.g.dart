@@ -73,12 +73,28 @@ mixin _$HomeController on _HomeController, Store {
     });
   }
 
+  late final _$attemptsAtom =
+      Atom(name: '_HomeController.attempts', context: context);
+
+  @override
+  int get attempts {
+    _$attemptsAtom.reportRead();
+    return super.attempts;
+  }
+
+  @override
+  set attempts(int value) {
+    _$attemptsAtom.reportWrite(value, super.attempts, () {
+      super.attempts = value;
+    });
+  }
+
   late final _$getAnswerAsyncAction =
       AsyncAction('_HomeController.getAnswer', context: context);
 
   @override
-  Future<void> getAnswer() {
-    return _$getAnswerAsyncAction.run(() => super.getAnswer());
+  Future<void> getAnswer(BuildContext context) {
+    return _$getAnswerAsyncAction.run(() => super.getAnswer(context));
   }
 
   @override
@@ -87,7 +103,8 @@ mixin _$HomeController on _HomeController, Store {
 value: ${value},
 isLoading: ${isLoading},
 isError: ${isError},
-answer: ${answer}
+answer: ${answer},
+attempts: ${attempts}
     ''';
   }
 }

@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
             child: Align(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
-                  onPressed: () async => await this.homeController.getAnswer(),
+                  onPressed: () async => await this.homeController.getAnswer(context),
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(

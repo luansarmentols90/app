@@ -1,5 +1,4 @@
 import 'package:app/src/infrastructure/exceptions/comunication_exception.dart';
-import 'package:app/src/modules/home/models/chuck-norris-response-db.dart';
 import 'package:app/src/modules/home/repository/home-repository.dart';
 
 class HomeService{
@@ -9,9 +8,8 @@ class HomeService{
   Future<String?> getAnswer() async {
 
     try{
-      Answer? answer = await homeRepository.getAnswer();
-      //throw Exception();
-      //return "Nova curiosidade: ${answer!.text}";
+      String? answer = await homeRepository.getAnswer();
+      return "Nova curiosidade: ${answer!}";
     }on ComunicationException catch (e){
       print(e.toStringMessage());
       rethrow;
